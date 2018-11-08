@@ -12,17 +12,34 @@ context.lineWidth = radius * 2;
 
 var putPoint = function(e){
     if(dragging){
-    context.fillStyle = lineColor;
-    context.lineTo(e.clientX, e.clientY);
-    context.stroke();
-    context.beginPath();
-    context.arc(e.offsetX,e.offsetY,radius, 0, Math.PI*2);
-    context.fill();
-    context.fillStyle = lineColor;
-    context.beginPath();
-    context.moveTo(e.clientX, e.clientY);
+        context.fillStyle = lineColor;
+        context.lineTo(e.clientX, e.clientY);
+        context.stroke();
+        context.beginPath();
+        context.arc(e.offsetX,e.offsetY,radius, 0, Math.PI*2);
+        context.fill();
+        context.fillStyle = lineColor;
+        context.beginPath();
+        context.moveTo(e.clientX, e.clientY);
     }
 }
+
+var touchPoint = function(e){
+    var touch = e.touches[0];
+
+    //if(dragging){
+        context.fillStyle = lineColor;
+        context.lineTo(touch.clientX, touch.clientY);
+        context.stroke();
+        context.beginPath();
+        context.arc(touch.offsetX,touch.offsetY,radius, 0, Math.PI*2);
+        context.fill();
+        context.fillStyle = lineColor;
+        context.beginPath();
+        context.moveTo(touch.clientX, touch.clientY);
+    //}
+}
+
 var serRaidus = function(e){
     newRadius = radius
     if(bigger == true){
@@ -103,4 +120,4 @@ window.addEventListener('keypress', function(e) {
     }
     
     });
-    window.addEventListener('touchmove', putPoint); 
+    window.addEventListener('touchmove', touchPoint); 
